@@ -31,6 +31,14 @@
   "devDependencies": {
     "jest": "^29.7.0"
   },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "scripts",
+    "evals",
+    "references",
+    ".env.example"
+  ],
   "engines": {
     "node": ">=20.0.0"
   }
