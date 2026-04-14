@@ -1,0 +1,115 @@
+{
+  "skill_name": "figma-design-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "name": "获取Figma文件信息",
+      "prompt": "分析这个Figma文件的基本信息：https://www.figma.com/design/s4pJ2HQUx9oTyw3yjft2yw/号角web重构?node-id=30819-20325&t=0LWb1LBUYEpmdx02-4",
+      "description": "获取Figma文件的元数据和结构信息",
+      "files": [],
+      "expected_output": "包含文件ID、名称、页面结构、组件数量等信息的JSON",
+      "assertions": [
+        {
+          "name": "包含文件ID",
+          "description": "输出应包含正确的文件ID",
+          "type": "contains",
+          "expected": "s4pJ2HQUx9oTyw3yjft2yw"
+        },
+        {
+          "name": "包含页面信息",
+          "description": "输出应包含页面结构信息",
+          "type": "has_key",
+          "expected": "structure.pages"
+        },
+        {
+          "name": "JSON格式正确",
+          "description": "输出应为有效的JSON格式",
+          "type": "valid_json"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "提取设计系统",
+      "prompt": "从Figma文件中提取所有设计系统数据，包括颜色、字体、间距等",
+      "description": "提取完整的设计系统规范",
+      "files": [],
+      "expected_output": "包含颜色、字体、间距、组件等设计属性的结构化JSON",
+      "assertions": [
+        {
+          "name": "包含颜色数组",
+          "description": "输出应包含colors数组",
+          "type": "has_key",
+          "expected": "colors"
+        },
+        {
+          "name": "包含字体数组",
+          "description": "输出应包含fonts数组",
+          "type": "has_key",
+          "expected": "fonts"
+        },
+        {
+          "name": "包含摘要信息",
+          "description": "输出应包含设计系统摘要",
+          "type": "has_key",
+          "expected": "summary"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "导出设计截图",
+      "prompt": "导出Figma设计中节点30819-20325的截图，格式为PNG，缩放2倍",
+      "description": "导出特定设计节点的截图",
+      "files": [],
+      "expected_output": "PNG格式的截图文件和导出信息",
+      "assertions": [
+        {
+          "name": "生成截图文件",
+          "description": "应生成PNG截图文件",
+          "type": "file_exists",
+          "expected": ".png"
+        },
+        {
+          "name": "包含导出信息",
+          "description": "输出应包含导出详细信息",
+          "type": "has_key",
+          "expected": "image_path"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "比对设计与实现",
+      "prompt": "将我的CSS实现与Figma设计进行比对验证，生成详细报告",
+      "description": "比对CSS实现与Figma设计的一致性",
+      "files": [
+        {
+          "path": "scripts/test-data/test-styles.css",
+          "description": "测试CSS文件"
+        }
+      ],
+      "expected_output": "包含比对结果和改进建议的JSON报告",
+      "assertions": [
+        {
+          "name": "包含比对摘要",
+          "description": "输出应包含比对摘要信息",
+          "type": "has_key",
+          "expected": "summary"
+        },
+        {
+          "name": "包含通过率",
+          "description": "输出应包含通过率统计",
+          "type": "has_key",
+          "expected": "summary.pass_rate"
+        },
+        {
+          "name": "包含改进建议",
+          "description": "输出应包含改进建议",
+          "type": "has_key",
+          "expected": "recommendations"
+        }
+      ]
+    }
+  ]
+}
